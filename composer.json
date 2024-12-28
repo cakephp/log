@@ -24,16 +24,16 @@
     },
     "require": {
         "php": ">=8.4",
-        "cakephp/core": "6.x-dev",
+        "cakephp/core": "^6.0",
         "psr/log": "^3.0"
-    },
-    "provide": {
-        "psr/log-implementation": "^3.0"
     },
     "autoload": {
         "psr-4": {
             "Cake\\Log\\": "."
         }
+    },
+    "provide": {
+        "psr/log-implementation": "^3.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
