@@ -24,7 +24,7 @@
     },
     "require": {
         "php": ">=8.4",
-        "cakephp/core": "^6.0",
+        "cakephp/core": "6.0.*@dev",
         "psr/log": "^3.0"
     },
     "autoload": {
@@ -35,6 +35,10 @@
     "provide": {
         "psr/log-implementation": "^3.0"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-5.next": "6.0.x-dev"
+        }
+    }
 }
