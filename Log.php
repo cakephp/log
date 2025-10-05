@@ -118,7 +118,7 @@ class Log
      * @var array<string, string>
      * @phpstan-var array<string, class-string>
      */
-    protected static array $_dsnClassMap = [
+    protected static array $dsnClassMap = [
         'console' => Engine\ConsoleLog::class,
         'file' => Engine\FileLog::class,
         'syslog' => Engine\SyslogLog::class,
@@ -136,7 +136,7 @@ class Log
      *
      * @var \Cake\Log\LogEngineRegistry
      */
-    protected static LogEngineRegistry $_registry;
+    protected static LogEngineRegistry $registry;
 
     /**
      * Handled log levels
@@ -179,21 +179,21 @@ class Log
      */
     protected static function getRegistry(): LogEngineRegistry
     {
-        static::$_registry ??= new LogEngineRegistry();
+        static::$registry ??= new LogEngineRegistry();
 
         if (static::$_dirtyConfig) {
-            foreach (static::$_config as $name => $properties) {
+            foreach (static::$config as $name => $properties) {
                 if (isset($properties['engine'])) {
                     $properties['className'] = $properties['engine'];
                 }
-                if (!static::$_registry->has((string)$name)) {
-                    static::$_registry->load((string)$name, $properties);
+                if (!static::$registry->has((string)$name)) {
+                    static::$registry->load((string)$name, $properties);
                 }
             }
         }
         static::$_dirtyConfig = false;
 
-        return static::$_registry;
+        return static::$registry;
     }
 
     /**
@@ -208,10 +208,10 @@ class Log
      */
     public static function reset(): void
     {
-        if (isset(static::$_registry)) {
-            static::$_registry->reset();
+        if (isset(static::$registry)) {
+            static::$registry->reset();
         }
-        static::$_config = [];
+        static::$config = [];
         static::$_dirtyConfig = true;
     }
 
