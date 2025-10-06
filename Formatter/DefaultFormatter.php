@@ -25,7 +25,7 @@ class DefaultFormatter extends AbstractFormatter
      *
      * @var array<string, mixed>
      */
-    protected array $_defaultConfig = [
+    protected array $defaultConfig = [
         'dateFormat' => 'Y-m-d H:i:s',
         'includeTags' => false,
         'includeDate' => true,
@@ -36,12 +36,12 @@ class DefaultFormatter extends AbstractFormatter
      */
     public function format($level, string $message, array $context = []): string
     {
-        if ($this->_config['includeDate']) {
-            $message = sprintf('%s %s: %s', new DateTime()->format($this->_config['dateFormat']), $level, $message);
+        if ($this->config['includeDate']) {
+            $message = sprintf('%s %s: %s', new DateTime()->format($this->config['dateFormat']), $level, $message);
         } else {
             $message = sprintf('%s: %s', $level, $message);
         }
-        if ($this->_config['includeTags']) {
+        if ($this->config['includeTags']) {
             return sprintf('<%s>%s</%s>', $level, $message, $level);
         }
 

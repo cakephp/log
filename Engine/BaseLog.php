@@ -37,7 +37,7 @@ abstract class BaseLog extends AbstractLogger
      *
      * @var array<string, mixed>
      */
-    protected array $_defaultConfig = [
+    protected array $defaultConfig = [
         'levels' => [],
         'scopes' => [],
         'formatter' => DefaultFormatter::class,
@@ -57,18 +57,18 @@ abstract class BaseLog extends AbstractLogger
     {
         $this->setConfig($config);
 
-        if ($this->_config['scopes'] !== null) {
-            $this->_config['scopes'] = (array)$this->_config['scopes'];
+        if ($this->config['scopes'] !== null) {
+            $this->config['scopes'] = (array)$this->config['scopes'];
         }
 
-        $this->_config['levels'] = (array)$this->_config['levels'];
+        $this->config['levels'] = (array)$this->config['levels'];
 
-        if (!empty($this->_config['types']) && empty($this->_config['levels'])) {
-            $this->_config['levels'] = (array)$this->_config['types'];
+        if (!empty($this->config['types']) && empty($this->config['levels'])) {
+            $this->config['levels'] = (array)$this->config['types'];
         }
 
         /** @var \Cake\Log\Formatter\AbstractFormatter|array|class-string<\Cake\Log\Formatter\AbstractFormatter> $formatter */
-        $formatter = $this->_config['formatter'] ?? DefaultFormatter::class;
+        $formatter = $this->config['formatter'] ?? DefaultFormatter::class;
         if (!is_object($formatter)) {
             if (is_array($formatter)) {
                 /** @var class-string<\Cake\Log\Formatter\AbstractFormatter> $class */
@@ -91,7 +91,7 @@ abstract class BaseLog extends AbstractLogger
      */
     public function levels(): array
     {
-        return $this->_config['levels'];
+        return $this->config['levels'];
     }
 
     /**
@@ -101,7 +101,7 @@ abstract class BaseLog extends AbstractLogger
      */
     public function scopes(): ?array
     {
-        return $this->_config['scopes'];
+        return $this->config['scopes'];
     }
 
     /**

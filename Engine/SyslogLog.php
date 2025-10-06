@@ -51,7 +51,7 @@ class SyslogLog extends BaseLog
      *
      * @var array<string, mixed>
      */
-    protected array $_defaultConfig = [
+    protected array $defaultConfig = [
         'levels' => [],
         'scopes' => [],
         'flag' => LOG_ODELAY,
@@ -102,7 +102,7 @@ class SyslogLog extends BaseLog
     public function log($level, Stringable|string $message, array $context = []): void
     {
         if (!$this->_open) {
-            $config = $this->_config;
+            $config = $this->config;
             $this->open($config['prefix'], $config['flag'], $config['facility']);
             $this->_open = true;
         }

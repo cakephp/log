@@ -45,7 +45,7 @@ class FileLog extends BaseLog
      *
      * @var array<string, mixed>
      */
-    protected array $_defaultConfig = [
+    protected array $defaultConfig = [
         'path' => null,
         'file' => null,
         'types' => null,
@@ -92,21 +92,21 @@ class FileLog extends BaseLog
 
         $this->_path = $this->getConfig('path', sys_get_temp_dir() . DIRECTORY_SEPARATOR);
         if (!is_dir($this->_path)) {
-            mkdir($this->_path, $this->_config['dirMask'] ^ umask(), true);
+            mkdir($this->_path, $this->config['dirMask'] ^ umask(), true);
         }
 
-        if (!empty($this->_config['file'])) {
-            $this->_file = $this->_config['file'];
+        if (!empty($this->config['file'])) {
+            $this->_file = $this->config['file'];
             if (!str_ends_with($this->_file, '.log')) {
                 $this->_file .= '.log';
             }
         }
 
-        if (!empty($this->_config['size'])) {
-            if (is_numeric($this->_config['size'])) {
-                $this->_size = (int)$this->_config['size'];
+        if (!empty($this->config['size'])) {
+            if (is_numeric($this->config['size'])) {
+                $this->_size = (int)$this->config['size'];
             } else {
-                $this->_size = Text::parseFileSize($this->_config['size']);
+                $this->_size = Text::parseFileSize($this->config['size']);
             }
         }
     }
@@ -132,7 +132,7 @@ class FileLog extends BaseLog
         }
 
         $pathname = $this->_path . $filename;
-        $mask = $this->_config['mask'];
+        $mask = $this->config['mask'];
         if (!$mask) {
             file_put_contents($pathname, $message . "\n", FILE_APPEND);
 
@@ -196,7 +196,7 @@ class FileLog extends BaseLog
             return null;
         }
 
-        $rotate = $this->_config['rotate'];
+        $rotate = $this->config['rotate'];
         if ($rotate === 0) {
             $result = unlink($filePath);
         } else {
