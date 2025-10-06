@@ -31,7 +31,7 @@ class ConsoleLog extends BaseLog
      *
      * @var array<string, mixed>
      */
-    protected array $_defaultConfig = [
+    protected array $defaultConfig = [
         'stream' => 'php://stderr',
         'levels' => null,
         'scopes' => [],
@@ -67,7 +67,7 @@ class ConsoleLog extends BaseLog
     {
         parent::__construct($config);
 
-        $config = $this->_config;
+        $config = $this->config;
         if ($config['stream'] instanceof ConsoleOutput) {
             $this->_output = $config['stream'];
         } elseif (is_string($config['stream'])) {
